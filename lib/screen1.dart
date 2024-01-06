@@ -1,9 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:interview/widgits/empty.dart';
 import 'package:interview/widgits/location.dart';
+import 'package:interview/widgits/start.dart';
 
-class Screen1 extends StatelessWidget {
+class Screen1 extends StatefulWidget {
   const Screen1({super.key});
 
+  @override
+  State<Screen1> createState() => _Screen1State();
+}
+
+List img = [
+  "images/image 212.png",
+  "images/image 212-2.png",
+  "images/Frame 64.png",
+  "images/image 212-3.png",
+];
+List storename = [
+  'Sreeja Kirana & General Stores  Sreej...',
+  'Sreeja MEDICAL Stores',
+  'Sreeja Kirana & General Stores Sreej...',
+  'Sreeja General Stores',
+];
+List str = [
+  Star(),
+  empty(),
+  Star(),
+  empty(),
+];
+List dily = [
+  'Delivery',
+  'Delivery',
+  'Delivery',
+  'Delivery',
+];
+List cash = [
+  '5% Cashback',
+  '10% Cashback',
+  '5% Cashback',
+  '5% Cashback',
+];
+List distance = [
+  '450m',
+  '300m',
+  '800m',
+  '2.2Km',
+];
+
+class _Screen1State extends State<Screen1> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -27,7 +71,7 @@ class Screen1 extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -162,16 +206,17 @@ class Screen1 extends StatelessWidget {
                 SizedBox(
                   width: 10 * widthRatio,
                 ),
-                Container(
-                  width: 63 * widthRatio,
-                  height: 30 * heightRatio,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                  decoration: ShapeDecoration(
-                    color: Color(0xFF5764DA),
+                ElevatedButton(
+                  onPressed: () {
+                    // Add your onPressed logic here
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF5764DA),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 16 * widthRatio, vertical: 6 * heightRatio),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -183,7 +228,7 @@ class Screen1 extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 12 * widthRatio * heightRatio,
+                          fontSize: 12 * heightRatio * widthRatio,
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w600,
                           height: 0,
@@ -206,7 +251,120 @@ class Screen1 extends StatelessWidget {
                   height: 0,
                 ),
               ),
-            )
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: storename.length,
+                itemBuilder: (context, index) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              width: 36 * widthRatio,
+                              height: 36 * heightRatio,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(img[index]),
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 13 * widthRatio,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      storename[index],
+                                      style: TextStyle(
+                                        color: Colors.black
+                                            .withOpacity(0.800000011920929),
+                                        fontSize: 12 * widthRatio * heightRatio,
+                                        fontFamily: 'Poppins',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 6 * heightRatio,
+                                ),
+                                Row(
+                                  children: [
+                                    str[index],
+                                    Text(
+                                      '• ${dily[index]}',
+                                      style: TextStyle(
+                                        color: Colors.black
+                                            .withOpacity(0.4000000059604645),
+                                        fontSize: 10 * widthRatio * heightRatio,
+                                        fontFamily: 'Poppins',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 4 * widthRatio,
+                                    ),
+                                    Text(
+                                      '• ${cash[index]}',
+                                      style: TextStyle(
+                                        color: Colors.black
+                                            .withOpacity(0.4000000059604645),
+                                        fontSize: 10 * widthRatio * heightRatio,
+                                        fontFamily: 'Poppins',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0,
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                        Text(
+                          distance[index],
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            color: Colors.black.withOpacity(0.4000000059604645),
+                            fontSize: 10 * widthRatio * heightRatio,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w500,
+                            height: 0,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 16 * heightRatio),
+                      child: Container(
+                        width: 276 * widthRatio,
+                        decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                              width: 1 * widthRatio,
+                              strokeAlign: BorderSide.strokeAlignCenter,
+                              color:
+                                  Colors.black.withOpacity(0.10000000149011612),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
